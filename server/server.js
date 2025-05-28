@@ -16,23 +16,17 @@ app.get('/getBeers', async (req, res) => {
             "name": [""],
             "category": ["Öl & Cider"],
             "subcategory": [],
-            "volume": [],  // [], [min] eller [min, max], större returnerar fel
+            "volume": [],
             "alcvol": [0],
             "price": [],
-            "apk": [0],  // Endast ett värde => inget max
-            "rank": [1],  // Hur produkten rankas i vår databas just nu
-            "articlenbr": [], // (Inte interval)
-            "sortOrder": ["name", "asc"], // Anger hur resultatet ska sorteras; Första är ett värde (en av de andra
-            // parametrarna utom maxItems) och andra är antingen "desc" (sjunkande)
-            // eller "asc" (stigande). Default är ["apk", "desc"]. Endast värde ger "desc"
-            "maxItems": 0  // maxItems = 0 ger alla produkter
-        }
+            "apk": [0],
+            "rank": [1],
+            "articlenbr": [],
+            "sortOrder": ["name", "asc"],
+            "maxItems": 0 
+            }
 
-        //const resp = await fetch('https://api.apkollen.se', JSON.stringify(body));
-
-        const { data } = await axios.post('https://api.apkollen.se', body);
-
-        res.json(data);
+    const {data} = await axios.post('https://api.apkollen.se', body);
 
     } catch (error) {
 
