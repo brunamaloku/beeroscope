@@ -7,11 +7,12 @@ const port = 5001;
 app.use(cors());
 app.use(express.json());
 
+var beers = [];
+
 app.get('/getBeers', async (req, res) => {
     console.log("i get beers")
 
     try {
-
         const body = {
             "name": [""],
             "category": ["Öl & Cider"],
@@ -34,9 +35,7 @@ app.get('/getBeers', async (req, res) => {
 
 })
 
-async function getBeer(sign) {
-    //TODO flytta ölanropo + logik hit 
-
+async function getBeers() {
     const body = {
         "name": [""],
         "category": ["Öl & Cider"],
@@ -50,10 +49,16 @@ async function getBeer(sign) {
         "sortOrder": ["name", "asc"],
         "maxItems": 0
     }
+    if (beers.length === 0) {
+        const {data} = await axios.post('https://api.apkollen.se', body);
+        beers = data;
+    }
+}
 
-    const { data } = await axios.post('https://api.apkollen.se', body);
-    console.log(data);
-    return data;
+async function getBeer(sign) {
+    //TODO flytta ölanropo + logik hit 
+    await getBeers();
+    return beers[2];
 }
 
 
@@ -97,9 +102,11 @@ app.get('/get', async (req, res) => { //döp om till bara "/" o så har vi bara 
         const sign = await getSign(year, month, day);
         const beerdata = await getBeer(sign);
 
+        // let respons = JSON.stringify();
+
         res.json({
-            'sign' : sign, 
-            'beer' : beerdata
+            'sign': sign,
+            'beer': beerdata
         });
 
     } catch (error) {
