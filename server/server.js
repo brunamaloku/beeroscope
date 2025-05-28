@@ -28,6 +28,8 @@ app.get('/getBeers', async (req, res) => {
 
     const {data} = await axios.post('https://api.apkollen.se', body);
 
+    data.sort((a, b) => {return b.apk - a.apk });
+
     res.json(data);
         
     } catch (error) {
