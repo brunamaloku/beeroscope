@@ -32,7 +32,7 @@ useEffect(() => {
     <>
     <ul>
       {beers?.map(b =>{
-        <li>{b.name}</li>
+        return <li>{b.name}</li>
       })}
     </ul>
     </>
