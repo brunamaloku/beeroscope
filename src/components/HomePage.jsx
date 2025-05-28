@@ -1,17 +1,18 @@
 import { useState, useEffect, React } from 'react'
 import axios from 'axios'
 import Beer from './Beer'
+import GetAstro from './GetAstro'
 
 const HomePage = () => {
 
 
   return (
     <>
-    <div>
-    <Beer/>
-    </div>
+      <div>
+        <Beer />
+      </div>
     </>
-    
+
   )
 
 }
