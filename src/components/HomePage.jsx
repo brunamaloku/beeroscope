@@ -1,25 +1,40 @@
-import {useState, useEffect, React} from 'react'
+import { useState, useEffect, React } from 'react'
 import axios from 'axios'
 
 const HomePage = () => {
 
-const [beers, setBeers] = useState([]);
+  const [beers, setBeers] = useState([]);
+  const [date, setDate] = useState();
+  const [name, setName] = useState("");
 
-const getBeers = async () => {
+  const getBeers = async () => {
 
-try {
+    try {
 
-const {data} = await axios.get('http://localhost:5001/getBeers');
-setBeers(data);
+      const { data } = await axios.get('http://localhost:5001/getBeers');
+      setBeers(data);
 
-    
-} catch (error) {
-    console.log(error);
-}
 
-}
+    } catch (error) {
+      console.log(error);
+    }
 
-useEffect(() => {
+  }
+
+  const submitForm = async () => {
+    e.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5001/getBeers', {
+        name: [name],
+        date: date
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    }
+  }
+
+  useEffect(() => {
 
     const loadData = async () => {
       await getBeers();
@@ -37,6 +52,9 @@ useEffect(() => {
     </ul>
     </>
   )
+
 }
+
+
 
 export default HomePage
