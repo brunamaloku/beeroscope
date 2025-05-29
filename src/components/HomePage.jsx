@@ -4,13 +4,14 @@ import Beer from './Beer'
 import GetAstro from './GetAstro'
 import Form from './Form'
 import GetData from './APICall'
+import Likes from './Likes'
 
 const HomePage = () => {
 
   const [date, setDate] = useState("");
   const [name, setName] = useState("");
   const [formSent, setFormSent] = useState(false);
-  const [likedItems, setLikedItems] = useState([]);
+  const [likedItems, setLikedItems] = useState([{beer : { url : "hallå" }}]);
 
 
   function Beer() {
@@ -32,8 +33,9 @@ const HomePage = () => {
           <p>Ange födelsedatum för att få en öl baserat på ditt horoskop för dagen (OBS detta är lögn...)</p>
           <Form setDate={setDate} setName={setName} setFormSent={setFormSent} />
           <Beer />
+          {/* <Button /> */}
           <h2>Sparad öl</h2>
-
+          <Likes likedItems={likedItems}/>
         </div>
       </div>
     </>

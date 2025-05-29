@@ -1,10 +1,10 @@
-import { useState, useEffect, React } from 'react'
+import { useEffect, React, useState } from 'react'
 import axios from 'axios'
 import BeerItem from './BeerItem';
 
 const GetData = ({ year, month, day, setLikedItems, likedItems }) => {
 
-    const [response, setResponse] = useState([]);
+    const [response, setResponse, ref] = useState([]);
     const URL = `http://localhost:5001/get?year=${year}&month=${month}&day=${day}`;
 
     

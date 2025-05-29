@@ -1,3 +1,5 @@
+import LikedItem from "./LikedItem";
+
 const Likes = ({likedItems}) => {
     const listItems = likedItems.map(item =>
 
