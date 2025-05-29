@@ -10,14 +10,16 @@ const HomePage = () => {
   const [date, setDate] = useState("");
   const [name, setName] = useState("");
   const [formSent, setFormSent] = useState(false);
+  const [likedItems, setLikedItems] = useState([]);
+
 
   function Beer() {
     return (
       formSent ? (
-          <GetData />
+        <GetData setLikedItems={setLikedItems} likedItems={likedItems} />
       ) : (
         <div></div>
-      ) 
+      )
     )
   }
 
@@ -28,7 +30,7 @@ const HomePage = () => {
           <h1>Beeroscope</h1>
           <h2>Rekommendera öl</h2>
           <p>Ange födelsedatum för att få en öl baserat på ditt horoskop för dagen (OBS detta är lögn...)</p>
-          <Form setDate={setDate} setName={setName} setFormSent={setFormSent}/>
+          <Form setDate={setDate} setName={setName} setFormSent={setFormSent} />
           <Beer />
           <h2>Sparad öl</h2>
 

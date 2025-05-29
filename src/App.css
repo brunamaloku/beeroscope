@@ -27,6 +27,11 @@
   margin: auto;
 }
 
+.heart-button {
+  height: 40px;
+
+}
+
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

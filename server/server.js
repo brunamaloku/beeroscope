@@ -125,7 +125,8 @@ app.get('/get', async (req, res) => { //döp om till bara "/" o så har vi bara 
         res.json({
             'sign' : sign,
             'beer' : beerdata,
-            'image' : image
+            'image' : image,
+            'date' : new Date()
         });
 
     } catch (error) {
