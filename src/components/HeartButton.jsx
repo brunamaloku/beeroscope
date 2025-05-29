@@ -1,16 +1,10 @@
 const HeartButton = ({ setLikedItems, likedItems, item }) => {
     function Like() {
-
-        console.log(item);
-        setLikedItems([
-            item,
-            ... likedItems
-        ]);
-        setLikedItems([
-            ... likedItems,
-            item
-        ]);
-        console.log(likedItems)
+        if (!likedItems.includes(item)) {
+            let items = likedItems;
+            items.push(item);
+            setLikedItems(items);
+        }
     }
     return (
         <button type="button" className="heart-button btn btn-outline-danger" onClick={Like}>
