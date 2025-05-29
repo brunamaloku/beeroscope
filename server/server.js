@@ -57,13 +57,14 @@ async function getBeers() {
 
 async function getImage(URL) {
     //scraping via URL här
+    //return "https://cmxsapnc.cloudimg.io/fit/1534x1534/fbright5/_img_/20907/abro-brygg-mastarens-premium-gold-59.jpg"
     return "https://cmxsapnc.cloudimg.io/fit/1200x1200/fbright5/_img_/1423/abro-original-52.jpg";
 }
 
 async function getBeer(sign) {
     //TODO flytta ölanrop + logik hit 
-    //await getBeers();
-    //return beers[2];
+    await getBeers();
+    //return beers[0];
     return {
         "url": "https://www.bordershop.com/se/ol-cider/svensk-ol/abro-original-52-2035394",
         "name": "Åbro Original 5,2%",
@@ -119,14 +120,18 @@ app.get('/get', async (req, res) => { //döp om till bara "/" o så har vi bara 
         const sign = await getSign(year, month, day);
         const beerdata = await getBeer(sign);
         const image = await getImage(beerdata.url);
+        const date = new Date();
+        const id = sign + beerdata.url + date.getDate();
 
         // let respons = JSON.stringify();
+
 
         res.json({
             'sign' : sign,
             'beer' : beerdata,
             'image' : image,
-            'date' : new Date()
+            'date' : date,
+            'id' : id
         });
 
     } catch (error) {

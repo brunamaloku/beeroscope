@@ -1,14 +1,12 @@
 import LikedItem from "./LikedItem";
 
-const Likes = ({likedItems}) => {
-    const listItems = likedItems.map(item =>
-
-        <li key={item.beer.url}>
-            <LikedItem item={item} />
-        </li>
-    );
+const Likes = ({ likedItems }) => {
+    const listItems = likedItems.map(item => {
+        //console.log(JSON.stringify(item))
+        return (<div key={item.id}><LikedItem item={item} /></div>)
+    });
     return (
-        <ul id="liked-items">{listItems}</ul>
+        <div className="card-group row" id="movie-cards">{listItems}</div>
     )
 
 }

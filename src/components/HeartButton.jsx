@@ -2,10 +2,10 @@ import { useEffect } from "react";
 
 const HeartButton = ({ setLikedItems, likedItems, item }) => {
     function Like() {
-        if (!likedItems.some(liked => liked.beer.url === item.beer.url)) {
-            setLikedItems(prev => [
+        if (!likedItems.some(liked => liked.id === item.id)) {
+            setLikedItems([
                 item,
-                ...prev
+                ...likedItems
             ]);
         }
         console.log(likedItems);
