@@ -7,37 +7,10 @@ const port = 5001;
 app.use(cors());
 app.use(express.json());
 
-app.get('/getBeers', async (req, res) => {
-    console.log("i get beers")
+const signMap = new Map();
+const intervalMap = new Map();
 
-    try {
-
-        const body = {
-            "name": [""],
-            "category": ["Öl & Cider"],
-            "subcategory": [],
-            "volume": [],
-            "alcvol": [0],
-            "price": [],
-            "apk": [0],
-            "rank": [1],
-            "articlenbr": [],
-            "sortOrder": ["name", "asc"],
-            "maxItems": 0
-        }
-
-        const { data } = await axios.post('https://api.apkollen.se', body);
-
-    } catch (error) {
-        console.log(error);
-    }
-
-})
-
-async function getBeer(sign) {
-    //TODO flytta ölanropo + logik hit 
-
-    const body = {
+const body = {
         "name": [""],
         "category": ["Öl & Cider"],
         "subcategory": [],
@@ -51,11 +24,47 @@ async function getBeer(sign) {
         "maxItems": 0
     }
 
-    const { data } = await axios.post('https://api.apkollen.se', body);
-    console.log(data);
-    return data;
+const loadMaps = () =>{
+
+    signMap.set(1, 'Capricorn');
+    signMap.set(2, 'Taurus');
+    signMap.set(3, 'Virgo');
+    signMap.set(4, 'Scorpio');
+    signMap.set(5, 'Aquarius');
+    signMap.set(6, 'Cancer');
+    signMap.set(7, 'Gemini');
+    signMap.set(8, 'Libra');
+    signMap.set(9, 'Aries');
+    signMap.set(10, 'Sagittarius');
+    signMap.set(11, 'Leo');
+    signMap.set(12, 'Pisces');
+
+
+
+
 }
 
+
+const getBeer = async (sign) => {
+
+    const {data} = await axios.post('https://api.apkollen.se', body);
+
+    data.sort((a,b) => b.apk - a.apk);
+
+    const max = data[0].apk;
+
+    const interval = max/12;
+
+    for (var i  = 0; i <= max; i+=interval){
+        console.log(i);
+    }
+
+    return data;
+
+
+}   
+
+getBeer();
 
 async function getSign({ month, year, day }) {
     const headers = {
