@@ -1,7 +1,13 @@
 import { useState, useEffect, React } from 'react'
 import axios from 'axios'
 
-const Form = ({setDate, setName}) => {
+
+
+const Form = ({setDate, setName, setFormSent}) => {
+
+    function ButtonClick() {
+        setFormSent(true);
+    }
 
     return (
         <>
@@ -21,8 +27,7 @@ const Form = ({setDate, setName}) => {
                     id="date"
                     placeholder="Date"
                     onChange={(e) => setDate(e.target.value)}></input>
-                <button type="submit" className="btn btn-primary mb-2">Submit</button>
-                {/* saknar onclick */}
+                <button type="submit" className="btn btn-primary mb-2" onClick={ButtonClick}>Submit</button>
             </div>
         </>
     )
