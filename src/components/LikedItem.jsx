@@ -1,4 +1,6 @@
-const LikedItem = ({item}) => {
+import RemoveButton from "./RemoveButton";
+
+const LikedItem = ({item, likedItems, setLikedItems}) => {
     const beer = item.beer;
     const date = new Date(item.date);
     let dateString = date.getDate();
@@ -16,7 +18,7 @@ const LikedItem = ({item}) => {
                     <p className="card-text" >
                         
                     </p>
-                    <a className="btn btn-primary">Ta bort som favorit</a>
+                    <RemoveButton item={item} likedItems={likedItems} setLikedItems={setLikedItems} />
                 </div>
         </div>
     );
