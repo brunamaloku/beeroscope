@@ -35,7 +35,7 @@ const HomePage = () => {
           <Beer />
           {/* <Button /> */}
           <h2>Sparad öl</h2>
-          <Likes likedItems={likedItems}/>
+          <Likes likedItems={likedItems} setLikedItems={setLikedItems}/>
         </div>
       </div>
     </>
