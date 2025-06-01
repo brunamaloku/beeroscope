@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
-import './App.css'
+import './App.scss'
 import axios from 'axios';
 import GetAstro from './components/GetAstro'
 import HomePage from './components/HomePage';

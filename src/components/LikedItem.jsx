@@ -15,8 +15,7 @@ const LikedItem = ({item, likedItems, setLikedItems}) => {
                 <div className="card-body" >
                     <h5 className="card-title" >{dateString}</h5>
                     <h6 className="beer-header">{beer.name}</h6>
-                    <p className="card-text" >
-                        
+                    <p className="card-text" >En {beer.volume}cl {beer.subcategory} till dig som {item.sign}.
                     </p>
                     <RemoveButton item={item} likedItems={likedItems} setLikedItems={setLikedItems} />
                 </div>

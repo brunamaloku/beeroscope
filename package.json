@@ -17,7 +17,8 @@
     "react": "^19.1.0",
     "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.0",
-    "react-usestateref": "^1.0.9"
+    "react-usestateref": "^1.0.9",
+    "sass": "^1.89.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
