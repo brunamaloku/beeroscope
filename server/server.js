@@ -44,7 +44,7 @@ async function getImage(URL) {
     const completeUrl = 'https://'+firstPic;
 
     return completeUrl;
-    
+
 }
 
 async function getBeer(sign) {
@@ -128,7 +128,7 @@ async function getSign({ month, year, day }) {
 }
 
 
-app.get('/get', async (req, res) => { //döp om till bara "/" o så har vi bara en endpoint?
+app.get('/', async (req, res) => { //döp om till bara "/" o så har vi bara en endpoint?
     try {
         const year = parseInt(req.query.year);
         const month = parseInt(req.query.month);
