@@ -97,11 +97,11 @@ const loadBeer = async () => {
 loadMaps();
 loadBeer();
 
-async function getSign({ month, year, day }) {
+async function getSign(year, month, day) {
     const headers = {
         headers: {
             'Content-Type': 'application/json',
-            'x-api-key': 'wWNBWbaWhs1q5QDEo7LPM4RcaIm2Kv553ZWknDGE'
+            'x-api-key': 'QzktiGgKjA4pJ9cUkscEr2M51omF1OoM1A8S6dS4'
         }
     };
     const body = {
@@ -121,8 +121,9 @@ async function getSign({ month, year, day }) {
         }
     }
 
-    //const { data } = await axios.post('https://json.freeastrologyapi.com/western/planets', body, headers);
-    // return data.output[1].zodiac_sign.name.en;
+    console.log(body)
+    const { data } = await axios.post('https://json.freeastrologyapi.com/western/planets', body, headers);
+    return data.output[1].zodiac_sign.name.en;
 
     return "Scorpio";
 }
@@ -133,6 +134,15 @@ app.get('/', async (req, res) => { //döp om till bara "/" o så har vi bara en 
         const year = parseInt(req.query.year);
         const month = parseInt(req.query.month);
         const day = parseInt(req.query.day);
+
+        // console.log(year);
+        // year = req.query.year
+        // console.log(year)
+
+         console.log(req.query)
+         console.log(year);
+         console.log(month);
+         console.log(day)
 
         const sign = await getSign(year, month, day);
         const beerdata = await getBeer(sign);
@@ -152,7 +162,7 @@ app.get('/', async (req, res) => { //döp om till bara "/" o så har vi bara en 
         });
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
     }
 
 })
