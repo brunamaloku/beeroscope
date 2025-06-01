@@ -3,8 +3,8 @@ import axios from 'axios'
 
 const Form = ({setDate, setName, setFormSent}) => {
 
-    function ButtonClick() {
-        console.log()
+    function ButtonClick(e) {
+        e.preventDefault();
         setFormSent(true);
     }
 
@@ -26,7 +26,7 @@ const Form = ({setDate, setName, setFormSent}) => {
                     id="date"
                     placeholder="Date"
                     onChange={(e) => setDate(e.target.value)}></input>
-                <button type="submit" className="btn mb-2" onClick={ButtonClick}>Submit</button>
+                <button type="submit" className="btn mb-2" onClick={(e) => ButtonClick(e)}>Submit</button>
                 </form>
             </div>
         </>

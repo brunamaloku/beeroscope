@@ -7,7 +7,7 @@ const RemoveButton = ({ setLikedItems, likedItems, item }) => {
 
     useEffect(() => { console.log(likedItems) }, [likedItems]);
     return (
-        <a className="btn btn-primary" onClick={Remove}>Ta bort som favorit</a>
+        <a className="btn btn-primary" onClick={Remove}>Ta bort</a>
     );
 }
 

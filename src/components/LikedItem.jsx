@@ -10,7 +10,7 @@ const LikedItem = ({item, likedItems, setLikedItems}) => {
     dateString += date.getFullYear();
 
     return (
-        <div className="card" style={{width: '18em'}}>
+        <div className="card" style={{width: '15em'}}>
             <img src={item.image} className="card-img-top" alt={beer.name} />
                 <div className="card-body" >
                     <h5 className="card-title" >{dateString}</h5>
