@@ -7,42 +7,12 @@ const port = 5001;
 app.use(cors());
 app.use(express.json());
 
-var beers = [];
-
-app.get('/getBeers', async (req, res) => {
-    console.log("i get beers")
-
-    try {
-        const body = {
-            "name": [""],
-            "category": ["Öl & Cider"],
-            "subcategory": [],
-            "volume": [],
-            "alcvol": [0],
-            "price": [],
-            "apk": [0],
-            "rank": [1],
-            "articlenbr": [],
-            "sortOrder": ["name", "asc"],
-            "maxItems": 0
-        }
-
-        const { data } = await axios.post('https://api.apkollen.se', body);
-
-    } catch (error) {
-        console.log(error);
-    }
-
-})
-
-async function getBeers() {
-    const body = {
 const signMap = new Map();
-const intervalMap = new Map();
+const beerMap = new Map();
 
 const body = {
         "name": [""],
-        "category": ["Öl & Cider"],
+        "category": ["Öl & Cider", "Vin"],
         "subcategory": [],
         "volume": [],
         "alcvol": [0],
@@ -53,11 +23,7 @@ const body = {
         "sortOrder": ["name", "asc"],
         "maxItems": 0
     }
-    if (beers.length === 0) {
-        const {data} = await axios.post('https://api.apkollen.se', body);
-        beers = data;
-    }
-}
+
 
 async function getImage(URL) {
     //scraping via URL här
@@ -66,64 +32,54 @@ async function getImage(URL) {
 }
 
 async function getBeer(sign) {
-    //TODO flytta ölanrop + logik hit 
-    await getBeers();
-    //return beers[0];
-    return {
-        "url": "https://www.bordershop.com/se/ol-cider/svensk-ol/abro-original-52-2035394",
-        "name": "Åbro Original 5,2%",
-        "category": "Öl & Cider",
-        "subcategory": "Svensk Öl",
-        "volume": 33,
-        "alcvol": 5.2,
-        "price": 4.46,
-        "apk": 3.8461537,
-        "articleNbr": 2035394,
-        "rank": 39
-      };
+    
+    const beers = beerMap.get(sign);
+    const index = Math.round(Math.random() * beers.length);
+
+    return beers[index];
+
 }
 
 const loadMaps = () =>{
 
-    signMap.set(1, 'Capricorn');
-    signMap.set(2, 'Taurus');
-    signMap.set(3, 'Virgo');
-    signMap.set(4, 'Scorpio');
-    signMap.set(5, 'Aquarius');
-    signMap.set(6, 'Cancer');
-    signMap.set(7, 'Gemini');
-    signMap.set(8, 'Libra');
-    signMap.set(9, 'Aries');
-    signMap.set(10, 'Sagittarius');
-    signMap.set(11, 'Leo');
-    signMap.set(12, 'Pisces');
-
-
-
+    signMap.set(1, 'Pisces');
+    signMap.set(2, 'Leo');
+    signMap.set(3, 'Sagittarius');
+    signMap.set(4, 'Aries');
+    signMap.set(5, 'Libra');
+    signMap.set(6, 'Gemini');
+    signMap.set(7, 'Cancer');
+    signMap.set(8, 'Aquarius');
+    signMap.set(9, 'Scorpio');
+    signMap.set(10, 'Virgo');
+    signMap.set(11, 'Taurus');
+    signMap.set(12, 'Capricorn');
 
 }
 
 
-const getBeer = async (sign) => {
+const loadBeer = async () => {
 
     const {data} = await axios.post('https://api.apkollen.se', body);
 
-    data.sort((a,b) => b.apk - a.apk);
+    data.sort((a,b) => a.apk - b.apk);
 
-    const max = data[0].apk;
+    const size = data.length / signMap.size;
+    var j = 0;
 
-    const interval = max/12;
+    for (var i  = 1; i <= signMap.size; i++){
 
-    for (var i  = 0; i <= max; i+=interval){
-        console.log(i);
+        const sign = signMap.get(i);
+        const filteredBeer = data.slice(j, (j+size));
+        beerMap.set(sign, filteredBeer);
+        
+        j+=size;
     }
-
-    return data;
-
 
 }   
 
-getBeer();
+loadMaps();
+loadBeer();
 
 async function getSign({ month, year, day }) {
     const headers = {
