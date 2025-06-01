@@ -1,9 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import axios from 'axios'
-import jsdom from 'jsdom'
 import puppeteer from 'puppeteer'
-const { JSDOM } = jsdom;
 const app = express();
 const port = 5001;
 
@@ -29,12 +27,10 @@ const body = {
 
 
 async function getImage(URL) {
-    
-    console.log(URL);
 
     const webBrowser = await puppeteer.launch();
     const newPage = await webBrowser.newPage();
-    await newPage.goto(URL);
+    await newPage.goto(URL, { waitUntil: 'networkidle2', timeout: 60000 }); // 60 sekunder
     await newPage.waitForSelector('.image img');
     
     const imageUrl = await newPage.$eval('.image img', img => img.getAttribute('srcset'));
@@ -97,11 +93,11 @@ const loadBeer = async () => {
 loadMaps();
 loadBeer();
 
-async function getSign({ month, year, day }) {
+async function getSign(year, month, day) {
     const headers = {
         headers: {
             'Content-Type': 'application/json',
-            'x-api-key': 'wWNBWbaWhs1q5QDEo7LPM4RcaIm2Kv553ZWknDGE'
+            'x-api-key': 'QzktiGgKjA4pJ9cUkscEr2M51omF1OoM1A8S6dS4'
         }
     };
     const body = {
@@ -121,18 +117,27 @@ async function getSign({ month, year, day }) {
         }
     }
 
-    //const { data } = await axios.post('https://json.freeastrologyapi.com/western/planets', body, headers);
-    // return data.output[1].zodiac_sign.name.en;
+    const { data } = await axios.post('https://json.freeastrologyapi.com/western/planets', body, headers);
+    return data.output[1].zodiac_sign.name.en;
 
-    return "Scorpio";
+   // return "Scorpio";
 }
 
 
-app.get('/', async (req, res) => { //döp om till bara "/" o så har vi bara en endpoint?
+app.get('/', async (req, res) => {
     try {
         const year = parseInt(req.query.year);
         const month = parseInt(req.query.month);
         const day = parseInt(req.query.day);
+
+        // console.log(year);
+        // year = req.query.year
+        // console.log(year)
+
+         console.log(req.query)
+         console.log(year);
+         console.log(month);
+         console.log(day)
 
         const sign = await getSign(year, month, day);
         const beerdata = await getBeer(sign);
@@ -152,7 +157,7 @@ app.get('/', async (req, res) => { //döp om till bara "/" o så har vi bara en 
         });
 
     } catch (error) {
-        console.log(error);
+        //console.log(error);
     }
 
 })

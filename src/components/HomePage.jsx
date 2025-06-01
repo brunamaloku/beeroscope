@@ -24,7 +24,7 @@ const HomePage = () => {
   function Beer() {
     return (
       formSent ? (
-        <GetData setLikedItems={setLikedItems} likedItems={likedItems} />
+        <GetData setLikedItems={setLikedItems} likedItems={likedItems} date={date} setFormSent={setFormSent} />
       ) : (
         <div></div>
       )
