@@ -5,7 +5,7 @@ import BeerItem from './BeerItem';
 const GetData = ({ year, month, day, setLikedItems, likedItems }) => {
 
     const [response, setResponse, ref] = useState([]);
-    const URL = `http://localhost:5001/get?year=${year}&month=${month}&day=${day}`;
+    const URL = `http://localhost:5001/?year=${year}&month=${month}&day=${day}`;
 
     
 
