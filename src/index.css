@@ -1,68 +1,101 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
+  font-family: 'Cormorant Garamond', serif;
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
+  padding: 0;
+  background: radial-gradient(circle, #b85bc7, #5e18a0, #000b56);
+  position: relative;
   min-height: 100vh;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.beeroscope {
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 2rem;
+  font-family: 'Noto Serif Display', serif; /* change */
+  letter-spacing: -0.05em;
+  text-shadow: 0 0 20px #fff6ff, 0 0 40px #e0caff;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.rec, .fav {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-top: 2rem;
+  text-shadow: 0 0 8px #ffccf9;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+p {
+  text-align: center;
+  max-width: 600px;
+  margin: auto;
+  font-style: italic;
+  font-size: 1.1rem;
+  padding: 0 1rem;
+}
+
+input, button {
+  background-color: #311d3f;
+  border: 1px solid #e0aaff;
+  padding: 0.6rem 1rem;
+  margin: 0.5rem 0;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.beeroscope, .rec, .fav, label, p {
+  color: #ffffff;
+}
+
+.container-fluid {
+  padding: 2rem;
+}
+
+h2 {
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.btn.mb-2 {
+  background-color: #ffffff;
+  color: #000000;
+  height: auto;
+  width: auto;
+  text-align: center;
+  padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+  margin-top: 1rem;
+}
+
+.btn.mb-2:hover {
+  border: #ffffff 1px solid;
+  color: #ffffff;
+}
+
+#name, #date {
+  width: 30%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.form-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: url('./meteor.png') repeat center;
+  opacity: 0.7; /* Adjust this value for more/less opacity */
+  pointer-events: none;
 }

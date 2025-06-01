@@ -6,6 +6,7 @@ import Form from './Form'
 import GetData from './APICall'
 import Likes from './Likes'
 
+
 const HomePage = () => {
 
   const [date, setDate] = useState("");
@@ -34,13 +35,13 @@ const HomePage = () => {
     <>
       <div className="row container-fluid">
         <div className="xs-col-12">
-          <h1>Beeroscope</h1>
-          <h2>Rekommendera öl</h2>
+          <h1 className="beeroscope">Beeroscope</h1>
+          <h2 className="rec">Rekommendera öl</h2>
           <p>Ange födelsedatum för att få en öl baserat på ditt horoskop för dagen (OBS detta är lögn...)</p>
           <Form setDate={setDate} setName={setName} setFormSent={setFormSent} />
           <Beer />
           {/* <Button /> */}
-          <h2>Sparad öl</h2>
+          <h2 className="fav">Sparad öl</h2>
           <Likes likedItems={likedItems} setLikedItems={setLikedItems}/>
         </div>
       </div>
