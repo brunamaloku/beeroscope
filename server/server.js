@@ -1,9 +1,7 @@
 import express from 'express'
 import cors from 'cors'
 import axios from 'axios'
-import jsdom from 'jsdom'
 import puppeteer from 'puppeteer'
-const { JSDOM } = jsdom;
 const app = express();
 const port = 5001;
 
@@ -29,12 +27,10 @@ const body = {
 
 
 async function getImage(URL) {
-    
-    console.log(URL);
 
     const webBrowser = await puppeteer.launch();
     const newPage = await webBrowser.newPage();
-    await newPage.goto(URL);
+    await newPage.goto(URL, { waitUntil: 'networkidle2', timeout: 60000 }); // 60 sekunder
     await newPage.waitForSelector('.image img');
     
     const imageUrl = await newPage.$eval('.image img', img => img.getAttribute('srcset'));
@@ -121,15 +117,14 @@ async function getSign(year, month, day) {
         }
     }
 
-    console.log(body)
     const { data } = await axios.post('https://json.freeastrologyapi.com/western/planets', body, headers);
     return data.output[1].zodiac_sign.name.en;
 
-    return "Scorpio";
+   // return "Scorpio";
 }
 
 
-app.get('/', async (req, res) => { //döp om till bara "/" o så har vi bara en endpoint?
+app.get('/', async (req, res) => {
     try {
         const year = parseInt(req.query.year);
         const month = parseInt(req.query.month);
