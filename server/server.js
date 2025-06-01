@@ -1,6 +1,9 @@
 import express from 'express'
 import cors from 'cors'
 import axios from 'axios'
+import jsdom from 'jsdom'
+import puppeteer from 'puppeteer'
+const { JSDOM } = jsdom;
 const app = express();
 const port = 5001;
 
@@ -26,9 +29,22 @@ const body = {
 
 
 async function getImage(URL) {
-    //scraping via URL här
-    //return "https://cmxsapnc.cloudimg.io/fit/1534x1534/fbright5/_img_/20907/abro-brygg-mastarens-premium-gold-59.jpg"
-    return "https://cmxsapnc.cloudimg.io/fit/1200x1200/fbright5/_img_/1423/abro-original-52.jpg";
+    
+    console.log(URL);
+
+    const webBrowser = await puppeteer.launch();
+    const newPage = await webBrowser.newPage();
+    await newPage.goto(URL);
+    await newPage.waitForSelector('.image img');
+    
+    const imageUrl = await newPage.$eval('.image img', img => img.getAttribute('srcset'));
+
+    let firstPic = imageUrl.split(',')[0].trim().split(' ')[0];
+    firstPic = firstPic.slice(2);
+    const completeUrl = 'https://'+firstPic;
+
+    return completeUrl;
+    
 }
 
 async function getBeer(sign) {
