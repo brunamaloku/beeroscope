@@ -11,14 +11,10 @@ const HomePage = () => {
   const [date, setDate] = useState("");
   const [name, setName] = useState("");
   const [formSent, setFormSent] = useState(false);
-  const [likedItems, setLikedItems] = useState([]);
-
-  useEffect(() => {
+  const [likedItems, setLikedItems] = useState(() => {
     const storedItems = localStorage.getItem('likedItems');
-    if (storedItems) {
-      setLikedItems(JSON.parse(storedItems));
-    }
-  }, []);
+    return storedItems ? JSON.parse(storedItems) : [];
+  });
 
   useEffect(() => {
     localStorage.setItem('likedItems', JSON.stringify(likedItems));
