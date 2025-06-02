@@ -27,6 +27,7 @@ const body = {
 
 
 async function getImage(URL) {
+    return "https://cmxsapnc.cloudimg.io/fit/400x400/fbright5/_img_/20132/falcon-export-52.jpg"
 
     const webBrowser = await puppeteer.launch();
     const newPage = await webBrowser.newPage();

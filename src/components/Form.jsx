@@ -1,11 +1,50 @@
-import { useState, useEffect, React } from 'react'
+import { useState, useEffect, React, use } from 'react'
 import axios from 'axios'
+import GetData from './APICall';
 
-const Form = ({setDate, setName, setFormSent}) => {
+const Form = ({setDate, date, setName, setResponseItem, responseItem}) => {
 
     function ButtonClick(e) {
         e.preventDefault();
-        setFormSent(true);
+        //setFormSent(true);
+        console.log("Button")
+        //const data = GetData(date);
+
+
+
+        if (date == undefined) {
+            return;
+        }
+    
+        const year = date.substring(0, 4)
+        const month = date.substring(5, 7);
+        const day = date.substring(8);
+    
+    
+        // const [response, setResponse] = useState([]);
+        const URL = `http://localhost:5001/?year=${year}&month=${month}&day=${day}`;
+    
+        console.log(URL)
+        var data;
+    
+        axios.get(URL)
+        .then(function (response) {
+            // handle success
+            console.log(response);
+            data = response.data;
+            //console.log(data + "form");
+            setResponseItem(v => [data, ...v]);
+            //return data;
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+        })
+        .finally(function () {
+            // always executed
+            console.log("Hallåja!");
+        });
+        console.log("hej");
     }
 
     return (
