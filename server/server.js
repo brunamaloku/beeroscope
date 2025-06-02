@@ -130,7 +130,11 @@ app.get('/', async (req, res) => {
         const year = parseInt(req.query.year);
         const month = parseInt(req.query.month);
         const day = parseInt(req.query.day);
-        const index = parseInt(req.query.index);
+        const offSet = parseInt(req.query.offSet);
+
+        var date = new Date();
+        date.setDate(date.getDate() + offSet);
+        const index = date.getDate();
 
         // console.log(year);
         // year = req.query.year
@@ -144,8 +148,9 @@ app.get('/', async (req, res) => {
         const sign = await getSign(year, month, day);
         const beerdata = await getBeer(sign, index);
         const image = await getImage(beerdata.url);
-        const date = new Date();
+        //const date = new Date();
         const id = sign + beerdata.url + date.getDate();
+
 
         // let respons = JSON.stringify();
 

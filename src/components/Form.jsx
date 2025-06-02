@@ -21,7 +21,7 @@ const Form = ({setDate, date, setName, setResponseItem, responseItem}) => {
 
         
     
-        const URL = `http://localhost:5001/?year=${year}&month=${month}&day=${day}&index=${number}`;
+        const URL = `http://localhost:5001/?year=${year}&month=${month}&day=${day}&offSet=${offSet}`;
     
         console.log(URL)
         var data;
@@ -29,7 +29,7 @@ const Form = ({setDate, date, setName, setResponseItem, responseItem}) => {
         axios.get(URL).then(function (response) {
             console.log(response);
             data = response.data;
-            setResponseItem(v => [data, ...v]);
+            setResponseItem([data]);
         }).catch(function (error) {
             console.log(error);
         })
