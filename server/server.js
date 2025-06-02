@@ -98,7 +98,7 @@ async function getSign(year, month, day) {
     const headers = {
         headers: {
             'Content-Type': 'application/json',
-            'x-api-key': 'wWNBWbaWhs1q5QDEo7LPM4RcaIm2Kv553ZWknDGE'
+            'x-api-key': 'FOgb5EDLGD8sQOFtLqClK3frDbU7pMci3UNJZdSb'
         }
     };
     const body = {
