@@ -1,11 +1,6 @@
 import { useState, useEffect, React, use } from 'react'
-import axios from 'axios'
-import Beer from './Beer'
-import GetAstro from './GetAstro'
 import Form from './Form'
-import GetData from './APICall'
 import Likes from './Likes'
-import LoadingSpinner from './LoadingSpinner'
 import BeerItem from './BeerItem'
 
 

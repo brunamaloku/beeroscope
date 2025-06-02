@@ -10,13 +10,13 @@ const LikedItem = ({item, likedItems, setLikedItems}) => {
     dateString += date.getFullYear();
 
     return (
-        <div className="card" style={{width: '15em'}}>
+        <div className="card">
             <img src={item.image} className="card-img-top" alt={beer.name} />
                 <div className="card-body" >
                     <h5 className="card-title" >{dateString}</h5>
                     <h6 className="beer-header">{beer.name}</h6>
-                    <p className="card-text" >
-                        
+                    <p className="card-text text-dark" >
+                        {item.sign}
                     </p>
                     <RemoveButton item={item} likedItems={likedItems} setLikedItems={setLikedItems} />
                 </div>
