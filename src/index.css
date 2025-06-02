@@ -99,3 +99,22 @@ body::before {
   opacity: 0.7; /* Adjust this value for more/less opacity */
   pointer-events: none;
 }
+
+
+.beerImage {
+  max-width: 300px;
+}
+
+.beer-item {
+  width: 400px;
+  margin: auto;
+  /* background-color: white; */
+
+  border-radius: 25px;
+  padding: 20px 10px;
+}
+
+.heart-button {
+  height: 100px;
+
+}
