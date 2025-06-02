@@ -27,7 +27,7 @@ const body = {
 
 
 async function getImage(URL) {
-    return "https://cmxsapnc.cloudimg.io/fit/400x400/fbright5/_img_/20132/falcon-export-52.jpg"
+    //return "https://cmxsapnc.cloudimg.io/fit/400x400/fbright5/_img_/20132/falcon-export-52.jpg"
 
     const webBrowser = await puppeteer.launch();
     const newPage = await webBrowser.newPage();
@@ -44,10 +44,10 @@ async function getImage(URL) {
 
 }
 
-async function getBeer(sign) {
+async function getBeer(sign, index) {
     
     const beers = beerMap.get(sign);
-    const index = Math.round(Math.random() * beers.length);
+    //const index = Math.round(Math.random() * beers.length);
 
     return beers[index];
 
@@ -85,7 +85,8 @@ const loadBeer = async () => {
         const sign = signMap.get(i);
         const filteredBeer = data.slice(j, (j+size));
         beerMap.set(sign, filteredBeer);
-        
+        console.log(sign);
+        console.log(filteredBeer.length);
         j+=size;
     }
 
@@ -130,6 +131,7 @@ app.get('/', async (req, res) => {
         const year = parseInt(req.query.year);
         const month = parseInt(req.query.month);
         const day = parseInt(req.query.day);
+        const index = parseInt(req.query.index);
 
         // console.log(year);
         // year = req.query.year
@@ -141,7 +143,7 @@ app.get('/', async (req, res) => {
          console.log(day)
 
         const sign = await getSign(year, month, day);
-        const beerdata = await getBeer(sign);
+        const beerdata = await getBeer(sign, index);
         const image = await getImage(beerdata.url);
         const date = new Date();
         const id = sign + beerdata.url + date.getDate();
