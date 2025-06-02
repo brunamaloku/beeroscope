@@ -14,6 +14,16 @@ const Form = ({ setDate, date, setResponseItem }) => {
         const month = date.substring(5, 7);
         const day = date.substring(8);
 
+        if (year == "" || month == "" || day == "") {
+            return;
+        }
+    
+        var today = new Date();
+        today.setDate(today.getDate() + offSet);
+        const number = today.getDate();
+
+        
+    
         const URL = `http://localhost:5001/?year=${year}&month=${month}&day=${day}&offSet=${offSet}`;
         console.log(URL)
 
