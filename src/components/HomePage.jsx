@@ -45,7 +45,7 @@ const HomePage = () => {
           <p>Ange födelsedatum för att få en drink baserat på ditt horoskop för dagen</p>
           <Form setDate={setDate} setName={setName} setResponseItem={setResponseItem} date={date} responseItem={responseItem} />
           {responseItem.map(response => { console.log(response);
-            return <div key={response.id}><BeerItem data={response} setLikedItems={setLikedItems} likedItems={likedItems} /></div>})}
+            return <div key={response.id}><BeerItem data={response} setLikedItems={setLikedItems} likedItems={likedItems} setResponseItem={setResponseItem} /></div>})}
           {/* <Button /> */}
           <h2 className="fav">Sparade drinkar</h2>
           <Likes likedItems={likedItems} setLikedItems={setLikedItems}/>
