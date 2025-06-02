@@ -4,13 +4,8 @@ import GetData from './APICall';
 
 const Form = ({setDate, date, setName, setResponseItem, responseItem}) => {
 
-    function ButtonClick(e) {
+    function ButtonClick(e, offSet) {
         e.preventDefault();
-        //setFormSent(true);
-        console.log("Button")
-        //const data = GetData(date);
-
-
 
         if (date == undefined) {
             return;
@@ -20,37 +15,31 @@ const Form = ({setDate, date, setName, setResponseItem, responseItem}) => {
         const month = date.substring(5, 7);
         const day = date.substring(8);
     
+        var today = new Date();
+        today.setDate(today.getDate() + offSet);
+        const number = today.getDate();
+
+        
     
-        // const [response, setResponse] = useState([]);
-        const URL = `http://localhost:5001/?year=${year}&month=${month}&day=${day}`;
+        const URL = `http://localhost:5001/?year=${year}&month=${month}&day=${day}&index=${number}`;
     
         console.log(URL)
         var data;
     
-        axios.get(URL)
-        .then(function (response) {
-            // handle success
+        axios.get(URL).then(function (response) {
             console.log(response);
             data = response.data;
-            //console.log(data + "form");
             setResponseItem(v => [data, ...v]);
-            //return data;
-        })
-        .catch(function (error) {
-            // handle error
+        }).catch(function (error) {
             console.log(error);
         })
-        .finally(function () {
-            // always executed
-            console.log("Hallåja!");
-        });
         console.log("hej");
     }
 
     return (
         <>
             <div>
-                <form className="form-inline form-center" action="submit">
+                <form className="form-inline form-center mb-2" action="submit">
                 {/* <label htmlFor="name" className="sr-only">Namn</label>
                 <input
                     type="text"
@@ -65,7 +54,11 @@ const Form = ({setDate, date, setName, setResponseItem, responseItem}) => {
                     id="date"
                     placeholder="Date"
                     onChange={(e) => setDate(e.target.value)}></input>
-                <button type="submit" className="btn mb-2" onClick={(e) => ButtonClick(e)}>Submit</button>
+                    <div>
+                <button type="submit" className="btn mb-2 mx-2" onClick={(e) => ButtonClick(e, -1)}>Igår</button>
+                <button type="submit" className="btn mb-2 mx-2" onClick={(e) => ButtonClick(e, 0)}>Idag</button>
+                <button type="submit" className="btn mb-2 mx-2" onClick={(e) => ButtonClick(e, 1)}>Imorgon</button>
+                </div>
                 </form>
             </div>
         </>
