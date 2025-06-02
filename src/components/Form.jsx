@@ -15,6 +15,7 @@ const Form = ({ setDate, date, setResponseItem }) => {
         const day = date.substring(8);
 
         const URL = `http://localhost:5001/?year=${year}&month=${month}&day=${day}&offSet=${offSet}`;
+        console.log(URL)
 
         axios.get(URL).then(function (response) {
             console.log(response);
