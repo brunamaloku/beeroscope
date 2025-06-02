@@ -18,20 +18,6 @@
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-.beerImage {
-  max-width: 300px;
-}
-
-.beer-item {
-  width: 400px;
-  margin: auto;
-}
-
-.heart-button {
-  height: 40px;
-
-}
-
 @keyframes logo-spin {
   from {
     transform: rotate(0deg);

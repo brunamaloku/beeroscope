@@ -16,7 +16,6 @@ const BeerItem = ({ data, setLikedItems, likedItems, setResponseItem }) => {
 
     const sign = data.sign;
     const beer = data.beer;
-    //setBeerItem(data.beer);
     return (
         <>
         {!data ? (
