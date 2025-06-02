@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 
-const HeartButton = ({ setLikedItems, likedItems, item }) => {
+const HeartButton = ({ setLikedItems, likedItems, item, setResponseItem }) => {
     function Like() {
         if (!likedItems.some(liked => liked.id === item.id)) {
             setLikedItems([
                 item,
                 ...likedItems
             ]);
+            setResponseItem([]);
         }
         console.log(likedItems);
     }

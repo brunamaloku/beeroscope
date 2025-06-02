@@ -13,7 +13,6 @@ const HomePage = () => {
 
   const [date, setDate] = useState("");
   const [name, setName] = useState("");
-  const [formSent, setFormSent] = useState(false);
   const [likedItems, setLikedItems] = useState(() => {
     const storedItems = localStorage.getItem('likedItems');
     return storedItems ? JSON.parse(storedItems) : [];
@@ -26,7 +25,7 @@ const HomePage = () => {
 
   function Beer() {
     return (
-      <BeerItem data={responseItem} setLikedItems={setLikedItems} likedItems={likedItems} />
+      <BeerItem data={responseItem} setLikedItems={setLikedItems} likedItems={likedItems} setResponseItem={setResponseItem} />
       // responseItem != {} ? (
       //   // <GetData setLikedItems={setLikedItems} likedItems={likedItems} date={date} setFormSent={setFormSent} />
       //   <BeerItem data={responseItem} setLikedItems={setLikedItems} likedItems={likedItems} />
@@ -45,7 +44,7 @@ const HomePage = () => {
           <p>Ange födelsedatum för att få en öl baserat på ditt horoskop för dagen</p>
           <Form setDate={setDate} setName={setName} setResponseItem={setResponseItem} date={date} responseItem={responseItem} />
           {responseItem.map(response => { console.log(response);
-            return <div key={response.id}><BeerItem data={response} setLikedItems={setLikedItems} likedItems={likedItems} /></div>})}
+            return <div key={response.id}><BeerItem data={response} setLikedItems={setLikedItems} likedItems={likedItems} setResponseItem={setResponseItem} /></div>})}
           {/* <Button /> */}
           <h2 className="fav">Sparad öl</h2>
           <Likes likedItems={likedItems} setLikedItems={setLikedItems}/>
