@@ -5,6 +5,7 @@ import GetAstro from './GetAstro'
 import Form from './Form'
 import GetData from './APICall'
 import Likes from './Likes'
+import LoadingSpinner from './LoadingSpinner'
 
 
 const HomePage = () => {
@@ -33,7 +34,7 @@ const HomePage = () => {
 
   return (
     <>
-      <div className="row container-fluid">
+            <div className="row container-fluid">
         <div className="xs-col-12">
           <h1 className="beeroscope">Beeroscope</h1>
           <h2 className="rec">Rekommendera öl</h2>
@@ -45,6 +46,8 @@ const HomePage = () => {
           <Likes likedItems={likedItems} setLikedItems={setLikedItems}/>
         </div>
       </div>
+          
+      
     </>
 
   )
