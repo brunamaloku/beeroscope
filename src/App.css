@@ -25,10 +25,19 @@
 .beer-item {
   width: 400px;
   margin: auto;
+  background-color: white;
+
+  border-radius: 25px;
+  padding: 20px 10px;
+}
+
+.beer-text {
+  color: #343434;
+  background-color: rgb(255, 255, 255);
 }
 
 .heart-button {
-  height: 40px;
+  height: 100px;
 
 }
 
