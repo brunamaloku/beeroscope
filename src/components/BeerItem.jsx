@@ -2,7 +2,6 @@ import { useState } from "react";
 import HeartButton from "./HeartButton";
 
 const BeerItem = ({ data, setLikedItems, likedItems }) => {
-    //const [beer, setBeerItem] = useState({});
 
     if(data.beer == undefined)
         return
@@ -16,10 +15,9 @@ const BeerItem = ({ data, setLikedItems, likedItems }) => {
 
     const sign = data.sign;
     const beer = data.beer;
-    //setBeerItem(data.beer);
     return (
         <>
-            <div className="beer-item bg-white" key={data.id}>
+            <div className="beer-item bg-white px-1 py-2" key={data.id}>
                 <h3>{sign} den {dateString}</h3>
                 <img src={data.image} alt={beer.name} className="beerImage" />
                 <div className="like-div d-flex p-2 bd-highlight align-items-center">

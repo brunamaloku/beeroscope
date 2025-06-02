@@ -51,13 +51,13 @@ const Form = ({setDate, date, setName, setResponseItem, responseItem}) => {
         <>
             <div>
                 <form className="form-inline form-center" action="submit">
-                <label htmlFor="name" className="sr-only">Namn</label>
+                {/* <label htmlFor="name" className="sr-only">Namn</label>
                 <input
                     type="text"
                     className="form-control mb-2 mr-sm-2"
                     id="name"
                     placeholder="Witchy Bitchy"
-                    onChange={(e) => setName(e.target.value)}></input>
+                    onChange={(e) => setName(e.target.value)}></input> */}
                 <label htmlFor="date" className="sr-only">Födelsedatum</label>
                 <input
                     type="date"
