@@ -18,9 +18,12 @@ const GetData = async (date) => {
     const month = date.substring(5, 7);
     const day = date.substring(8);
 
+    const today = new Date()
+    const inte = today.getDay();
+    console.log(inte);
 
     // const [response, setResponse] = useState([]);
-    const URL = `http://localhost:5001/?year=${year}&month=${month}&day=${day}`;
+    const URL = `http://localhost:5001/?year=${year}&month=${month}&day=${day}&index={}`;
 
     console.log(URL)
     var data;
