@@ -49,6 +49,7 @@ async function getBeer(sign, index) {
     const beers = beerMap.get(sign);
     //const index = Math.round(Math.random() * beers.length);
 
+    console.log(beers[index]);
     return beers[index];
 
 }
@@ -85,8 +86,6 @@ const loadBeer = async () => {
         const sign = signMap.get(i);
         const filteredBeer = data.slice(j, (j+size));
         beerMap.set(sign, filteredBeer);
-        console.log(sign);
-        console.log(filteredBeer.length);
         j+=size;
     }
 
@@ -99,7 +98,7 @@ async function getSign(year, month, day) {
     const headers = {
         headers: {
             'Content-Type': 'application/json',
-            'x-api-key': 'QzktiGgKjA4pJ9cUkscEr2M51omF1OoM1A8S6dS4'
+            'x-api-key': 'wWNBWbaWhs1q5QDEo7LPM4RcaIm2Kv553ZWknDGE'
         }
     };
     const body = {
@@ -122,7 +121,7 @@ async function getSign(year, month, day) {
     const { data } = await axios.post('https://json.freeastrologyapi.com/western/planets', body, headers);
     return data.output[1].zodiac_sign.name.en;
 
-   // return "Scorpio";
+   //return "Scorpio";
 }
 
 
@@ -138,9 +137,7 @@ app.get('/', async (req, res) => {
         // console.log(year)
 
          console.log(req.query)
-         console.log(year);
-         console.log(month);
-         console.log(day)
+         
 
         const sign = await getSign(year, month, day);
         const beerdata = await getBeer(sign, index);
