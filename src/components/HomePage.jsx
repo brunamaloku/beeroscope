@@ -40,7 +40,7 @@ const HomePage = () => {
     <>
             <div className="row container-fluid">
         <div className="xs-col-12">
-          <h1 className="beeroscope">Beeroscope</h1>
+          <h1 className="beeroscope">Drinkoscope</h1>
           <h2 className="rec">Rekommendera öl</h2>
           <p>Ange födelsedatum för att få en öl baserat på ditt horoskop för dagen</p>
           <Form setDate={setDate} setName={setName} setResponseItem={setResponseItem} date={date} responseItem={responseItem} />
