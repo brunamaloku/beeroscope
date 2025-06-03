@@ -1,12 +1,11 @@
-# React + Vite
+# Drinkoscope
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Är det en tråkig, ensam, långsam, tröttsam fredag? Är du trött på samma gamla vanliga drink som du alltid köper? Är du nyfiken på vilken energi du utstrålar idag? Då ska du kika hit!
 
-Currently, two official plugins are available:
+Drinkoscope är ett projekt där man får ut en drink baserat på dagens horoskop genom att skriva in sitt födelsedatum. Man har möjlighet att se drinken för igår, idag och imorgon samt spara ner drinkar som man tycker om. Drinkarna delas ut enligt snålighetslistan (vetenskapligt verifierad med ChatGPT) och är därmed korrekt enligt fakta. Slå dig ner, kör igång servern, kör npm run dev och få din drink på bara några sekunder!
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Projektet är uppbyggt mha React och Node.js (servern), vilket vi valde istället för Vue och Angular pga flera olika anledningar, bl.a:
 
-## Expanding the ESLint configuration
+### Återanvändning av komponenter
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Vi älskar återanvändning! Genom att använda React kan vi återanvända komponenter vid behov istället för att repetera kod på flera olika ställen.
