@@ -2,7 +2,6 @@ import express from 'express'
 import cors from 'cors'
 import axios from 'axios'
 import puppeteer from 'puppeteer'
-import { downloadBrowsers } from 'puppeteer/internal/node/install.js';
 const app = express();
 const port = 5001;
 
@@ -82,26 +81,29 @@ async function getImage(beer) {
 
 
 async function loadImages() {
-    const beers = beerMap.get("Scorpio");
+    console.log("starting scraping");
+    for (var i = 1; i < 13; i++) {
+        const beers = beerMap.get(signMap.get(i));
+        console.log("starting with " + signMap.get(i))
 
-    for (var i = 0; i < 2; i++) {
-        try {
+        var date = new Date();
+        date.setDate(date.getDate() - 1);
 
-            beers[i].image = await getImageFromWeb(beers[i]);
-            console.log(beers[i]);
-        } catch (error) {
-            console.log("No image found for " + beers[i].name);
-            console.log(error);
+        for (var j = 0; j < 3; j++) { //detta utgår från att man startar om servern varje dag...
+            const index = date.getDate();
+            console.log(index);
+            try {
+                beers[index].image = await getImageFromWeb(beers[index]);
+                console.log(beers[index]);
+            } catch (error) {
+                console.log("No image found for " + beers[index].name);
+                console.log(error);
+            }
+            date.setDate(date.getDate() + 1);
         }
+
+        console.log("done with " + signMap.get(i))
     }
-
-
-    // await beerMap.forEach(async (beers) => {
-    //    await beers.forEach(async (beer) => {
-    //         beer.image = await getImage(beer.url);
-    //     })
-    //     console.log("done with 1/12")
-    // })
     console.log("done with everything")
 }
 
